@@ -79,6 +79,15 @@ jobs:
           restore-keys: |
             ${{ secrets.CACHE_VERSION }}-repository
 
+      - name: Loading rustup cache
+        uses: actions/cache/restore@main
+        with:
+          path: |
+            clang_root
+          key: ${{ secrets.CACHE_VERSION }}-clang_root-${{ github.run_id }}
+          restore-keys: |
+            ${{ secrets.CACHE_VERSION }}-clang_root
+
       - name: Loading ${{ matrix.bit }} toolchain cache
         uses: actions/cache/restore@main
         with:
